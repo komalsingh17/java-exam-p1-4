@@ -11,19 +11,21 @@ public class App {
     public static void main(String[] args) {
         int n = 0, result = 0;
         String operation = "";
+
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            System.out.print("Enter n(>=1): ");
+            System.out.print("Enter n ( > 0 ): ");
             n = Integer.parseInt(reader.readLine());
+            while (n < 1) {
+                System.out.println("n must be greater than 0");
+                System.out.print("Enter n ( > 0 ): ");
+            }
+
             System.out.print("Compute\n'sum' or 'product': ");
             operation = reader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(n + "\n" + operation);
-        if (n < 1) {
-            System.out.println("n must be greater than 0");
-            return;
-        }
+
         switch (operation) {
             case "sum":
                 result = computeSum(n);
